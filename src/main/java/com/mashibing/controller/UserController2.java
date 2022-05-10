@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Locale;
 
 /**
  * 乱码问题解决
@@ -29,11 +30,28 @@ public class UserController2 {
         return "success";
     }
 
+    /**
+     * Controller中也支持原生Servlet的对象，需要在参数中给出
+     * HttpServletRequest:
+     * HttpServletResponse:
+     * HttpSession:
+     * Locale:设置区域信息,国际化的操作
+     * InputStream:
+     * outputStream:
+     * Reader
+     * Writer:
+     *
+     * @param request
+     * @param response
+     * @param session
+     * @return
+     */
     @RequestMapping("servletApi")
-    public String servletApi(HttpServletRequest request, HttpServletResponse response, HttpSession session){
+    public String servletApi(HttpServletRequest request, HttpServletResponse response, HttpSession session, Locale locale){
 //        response.getWriter().write();
         request.setAttribute("request","request");
         session.setAttribute("session","session");
+        System.out.println(locale.getCountry());
         return "success";
     }
 
