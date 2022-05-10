@@ -5,6 +5,10 @@ import com.mashibing.bean.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 /**
  * 乱码问题解决
  * 我们需要设置过滤   request 和response的编码方式，可以自己手动编写过滤器，也可以由线程的框架来实现
@@ -22,6 +26,14 @@ public class UserController2 {
     public String testUser(User user){
 
         System.out.println(user);
+        return "success";
+    }
+
+    @RequestMapping("servletApi")
+    public String servletApi(HttpServletRequest request, HttpServletResponse response, HttpSession session){
+//        response.getWriter().write();
+        request.setAttribute("request","request");
+        session.setAttribute("session","session");
         return "success";
     }
 
